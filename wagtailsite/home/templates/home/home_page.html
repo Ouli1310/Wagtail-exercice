@@ -1,0 +1,45 @@
+<!-- /.home/templates/home/home_page.html -->
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+
+<div class="container">
+    <nav class="navbar navbar-light bg-light" style="height: 80px;">
+   
+        
+                <input class="form-control" type="search" placeholder="Search for users or tags" aria-label="Search" style="border-radius: 30px;">
+               
+                
+            
+        
+
+      
+      </nav>
+    
+    <div class="row" style="margin-top: 20px;">
+       
+          
+            
+            {% for post in posts %}
+            <div class="col-md-4" style="margin-top: 20px;">
+                <div class="col-mb-2">
+                
+                    {% image post.image fill-400x400 as tmp_image %}
+                    <a href="{{ post.get_url }}"><img src="{{ tmp_image.url }}" alt="" class="card-img-top"></a>
+                
+                </div>
+            </div>    
+                       
+            {% endfor %}
+                
+              
+        
+        </mat-card>
+        </div>
+        
+    </div>
+    
+</div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+<!-- ./home/templates/home/product.html -->
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+<div class="row">
+  
+    <div class="col-md-3"></div>
+   
+    <div class="col-md-3">
+                <p class="mt-1 text-sm text-gray-800">{{ page.user_name }}</p>
+
+                <div>
+
+	                {% image page.image max-400x400 as temp_image %}
+	                <img class="rounded-t-lg h-full w-full" src="{{ temp_image.url }}" alt="" />
+                </div>
+               
+                    
+                
+	            <div style="float: right;">
+                    {% if page.tags.count %}
+               
+                    {% for tag in page.tags.all %}
+                    {# Loop through all the existing tags #}
+                    <a href="{{ self.get_parent.url }}?tag={{ tag.slug }}">{{ tag }},</a>
+                {% endfor %}
+             
+              
+               
+                
+             
+            {% endif %}
+                </div>
+	            
+            <div style="margin-top: 10px;">
+                <h5>Comments:</h5>
+                {% for comment in page.comment.all %}
+                    {# Loop through all the existing comments #}
+                    <a href="{{ self.get_parent.url }}?tag={{ comment.slug }}">{{ comment }}</a><br />
+                {% endfor %}
+            </div>     
+    
+           
+    
+	    
+	    </div>
+	</div>
+{% endblock %}
